@@ -1,0 +1,20 @@
+steps "Run a Script" {
+    condition = "Success"
+    package_requirement = "LetOctopusDecide"
+    start_trigger = "StartAfterPrevious"
+
+    actions "Run a Script" {
+        action_type = "Octopus.Script"
+        condition = "Success"
+        is_disabled = false
+        is_required = false
+        worker_pool_id_or_name = "Default Worker Pool"
+
+        properties {
+            Octopus_Action_RunOnServer = "true"
+            Octopus_Action_Script_ScriptSource = "Inline"
+            Octopus_Action_Script_Syntax = "PowerShell"
+            Octopus_Action_Script_ScriptBody = "Write-Host \"I am a script\""
+        }
+    }
+}
